@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JustALicht | Cybersecurity Portfolio</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="matrix-bg"></div>
+  <header>
+    <div class="container header-flex">
+      <img src="assets/images/dwc.png" alt="Logo" class="logo">
+      <h1><span class="glitch" data-text="JustALicht">JustALicht</span></h1>
+      <nav>
+        <ul>
+          <li><a href="index.html" class="active"><span class="nav-link">[Home]</span></a></li>
+          <li><a href="about.html"><span class="nav-link">[About]</span></a></li>
+          <li><a href="ctf.html"><span class="nav-link">[CTF]</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <div class="terminal-buttons">
+            <span class="terminal-btn red"></span>
+            <span class="terminal-btn yellow"></span>
+            <span class="terminal-btn green"></span>
+          </div>
+          <div class="terminal-title">root@justalicht:~</div>
+        </div>
+        <div class="terminal-body" id="terminal">
+          <p class="typewriter">Welcome to my Cybersecurity Portfolio</p>
+          <p class="typewriter delay-1">Type 'help' to see available commands</p>
+          <div class="terminal-content" id="terminal-content">
+            <div class="terminal-line">
+              <span class="prompt">root@justalicht:~$</span>
+              <input type="text" class="terminal-input" id="command-input" autofocus>
+            </div>
+            <div id="command-output"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-links">
+          <h3>Navigation</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="ctf.html">CTF</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h3>Connect</h3>
+          <ul>
+            <li><a href="https://tryhackme.com/p/justalicht" target="_blank">TryHackMe</a></li>
+            <li>Discord: justalicht</li>
+            <li>Email: justalicht@gmail.com</li>
+          </ul>
+        </div>
+        <div class="footer-design">
+          <h3>1firstdesign</h3>
+          <ul>
+            <li><a href="https://instagram.com/1firstdesign" target="_blank">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <p>&copy; 2025 JustALicht. All systems operational.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const terminalContent = document.getElementById('terminal-content');
+    const commandInput = document.getElementById('command-input');
+    const terminal = document.getElementById('terminal');
+    const commandOutput = document.getElementById('command-output');
+    
+    const commands = {
+      help: () => {
+        return `<pre>
+Available commands:
+  ls       - List files
+  cat [file] - Show file content
+  cd [page] - Change page (about, ctf)
+  help     - Show this help
+</pre>`;
+      },
+      ls: () => {
+        return 'flag.txt';
+      },
+      cat: (args) => {
+        if (args[0] === 'flag.txt') {
+          return 'flag{Y0U_F0uNd_M3}';
+        } else {
+          return `cat: ${args[0]}: No such file`;
+        }
+      },
+      cd: (args) => {
+        if (args[0] === 'about') {
+          setTimeout(() => { window.location.href = 'about.html'; }, 500);
+          return 'Redirecting to about page...';
+        } else if (args[0] === 'ctf') {
+          setTimeout(() => { window.location.href = 'ctf.html'; }, 500);
+          return 'Redirecting to CTF page...';
+        } else {
+          return `cd: no such page: ${args[0]}`;
+        }
+      }
+    };
+
+    function processCommand(command) {
+      const parts = command.split(' ');
+      const cmd = parts[0];
+      const args = parts.slice(1);
+
+      if (commands[cmd]) {
+        return commands[cmd](args);
+      } else {
+        return `Command not found: ${cmd}. Type 'help' for available commands.`;
+      }
+    }
+
+    function handleCommand(e) {
+      if (e.key === 'Enter') {
+        const command = e.target.value.trim();
+        if (command) {
+          commandOutput.innerHTML = '';
+          
+          const output = document.createElement('div');
+          output.className = 'terminal-output';
+          output.innerHTML = processCommand(command);
+          commandOutput.appendChild(output);
+          
+          e.target.value = '';
+          
+          terminal.scrollTop = terminal.scrollHeight;
+        }
+      }
+    }
+
+    document.addEventListener('click', () => {
+      commandInput.focus();
+    });
+
+    commandInput.addEventListener('keypress', handleCommand);
+  </script>
+</body>
+</html>
