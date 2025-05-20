@@ -13,7 +13,8 @@
     <div class="container header-flex">
       <img src="assets/images/dwc.png" alt="Logo" class="logo">
       <h1><span class="glitch" data-text="JustALicht">JustALicht</span></h1>
-      <nav>
+      <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+      <nav id="main-nav">
         <ul>
           <li><a href="index.html"><span class="nav-link">[Home]</span></a></li>
           <li><a href="about.html"><span class="nav-link">[About]</span></a></li>
@@ -70,9 +71,9 @@
           </ul>
         </div>
         <div class="footer-design">
-          <h3>1firstdesign</h3>
+          <h3>thanks for design Mond</h3>
           <ul>
-            <li><a href="https://instagram.com/1firstdesign" target="_blank">Instagram</a></li>
+            <li><a href="https://www.instagram.com/________mond________/" target="_blank">Instagram</a></li>
           </ul>
         </div>
       </div>
@@ -81,5 +82,14 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mainNav = document.getElementById('main-nav');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mainNav.classList.toggle('show');
+    });
+  </script>
 </body>
 </html>

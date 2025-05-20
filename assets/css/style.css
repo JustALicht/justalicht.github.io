@@ -48,12 +48,23 @@ footer {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  gap: 15px;
 }
 
 .logo {
   height: 40px;
   width: auto;
   filter: hue-rotate(90deg) brightness(1.5);
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: #0f0;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
 }
 
 nav ul {
@@ -236,7 +247,6 @@ h1, h2, h3 {
   text-shadow: 0 0 5px #0f0;
 }
 
-/* Terminal interaction styles */
 .terminal-content {
   margin-top: 20px;
 }
@@ -273,7 +283,6 @@ h1, h2, h3 {
   opacity: 0.5;
 }
 
-/* Footer styles */
 .footer-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -322,29 +331,6 @@ h1, h2, h3 {
   color: #0a0;
 }
 
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 15px;
-  }
-
-  .header-flex {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-  }
-
-  .hero {
-    padding: 40px 0;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Additional styles for command output */
 #command-output {
   margin-top: 10px;
 }
@@ -360,4 +346,86 @@ pre {
   margin: 0;
   font-family: 'Share Tech Mono', monospace;
   color: #0f0;
+}
+
+@media (max-width: 768px) {
+  .header-flex {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+    order: 1;
+  }
+
+  nav {
+    width: 100%;
+    order: 3;
+    display: none;
+  }
+
+  nav.show {
+    display: block;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #0a0;
+  }
+
+  .hero {
+    padding: 40px 0;
+  }
+
+  .terminal-window {
+    margin: 15px auto;
+  }
+
+  .terminal-body {
+    padding: 15px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .typewriter {
+    white-space: normal;
+    animation: none;
+  }
+
+  .cmd-list li {
+    padding-left: 20px;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 95%;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  h2 {
+    font-size: 1.3em;
+  }
+
+  h3 {
+    font-size: 1.1em;
+  }
+
+  .terminal-title {
+    font-size: 0.8em;
+  }
+
+  .terminal-input {
+    font-size: 0.9em;
+  }
 }
