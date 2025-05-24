@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JustALicht | Cybersecurity Portfolio</title>
+  <title>JustALicht</title>
   <link rel="stylesheet" href="assets/css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-4M7MVGK19P"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -16,9 +16,13 @@
 </head>
 <body>
   <div class="matrix-bg"></div>
+  <div class="particles" id="particles"></div>
+  
   <header>
     <div class="container header-flex">
-      <img src="assets/images/dwc.png" alt="Logo" class="logo">
+      <a href="index.html" class="logo-link">
+        <img src="assets/images/dwc.png" alt="Logo" class="logo">
+      </a>
       <h1><span class="glitch" data-text="JustALicht">JustALicht</span></h1>
       <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
       <nav id="main-nav">
@@ -48,7 +52,7 @@
           <div class="terminal-content" id="terminal-content">
             <div class="terminal-line">
               <span class="prompt">root@justalicht:~$</span>
-              <input type="text" class="terminal-input" id="command-input" autofocus>
+              <input type="text" class="terminal-input" id="command-input" autofocus placeholder="Type command...">
             </div>
             <div id="command-output"></div>
           </div>
@@ -72,6 +76,7 @@
           <h3>Connect</h3>
           <ul>
             <li><a href="https://tryhackme.com/p/justalicht" target="_blank">TryHackMe</a></li>
+            <li><a href="https://www.youtube.com/@JustALicht" target="_blank">YouTube</a></li>
             <li>Discord: justalicht</li>
             <li>Email: justalicht@gmail.com</li>
           </ul>
@@ -92,7 +97,6 @@
   <script>
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mainNav = document.getElementById('main-nav');
-    const terminalContent = document.getElementById('terminal-content');
     const commandInput = document.getElementById('command-input');
     const terminal = document.getElementById('terminal');
     const commandOutput = document.getElementById('command-output');
@@ -103,20 +107,23 @@
 
     const commands = {
       help: () => {
-        return `<pre>
-Available commands:
-  ls       - List files
-  cat [file] - Show file content
-  cd [page] - Change page (about, tools)
-  help     - Show this help
-</pre>`;
+        return `Available commands:
+ls       - List files
+cat [file] - Show file content
+cd [page] - Change page (about, tools)
+help     - Show this help
+clear    - Clear terminal`;
       },
       ls: () => {
-        return 'flag.txt';
+        return 'flag.txt  about.txt  skills.txt';
       },
       cat: (args) => {
         if (args[0] === 'flag.txt') {
           return 'flag{Y0U_F0uNd_M3}';
+        } else if (args[0] === 'about.txt') {
+          return 'JustALicht — Cybersecurity Analyst passionate about security and technology.';
+        } else if (args[0] === 'skills.txt') {
+          return 'Skills: Python, Penetration Testing, Network Security';
         } else {
           return `cat: ${args[0]}: No such file`;
         }
@@ -131,6 +138,10 @@ Available commands:
         } else {
           return `cd: no such page: ${args[0]}`;
         }
+      },
+      clear: () => {
+        commandOutput.innerHTML = '';
+        return '';
       }
     };
 
@@ -138,19 +149,18 @@ Available commands:
       const parts = command.split(' ');
       const cmd = parts[0];
       const args = parts.slice(1);
-
-      if (commands[cmd]) {
-        return commands[cmd](args);
-      } else {
-        return `Command not found: ${cmd}. Type 'help' for available commands.`;
-      }
+      if (commands[cmd]) return commands[cmd](args);
+      return `Command not found: ${cmd}. Type 'help' for available commands.`;
     }
 
     function handleCommand(e) {
       if (e.key === 'Enter') {
         const command = e.target.value.trim();
         if (command) {
-          commandOutput.innerHTML = '';
+          const commandLine = document.createElement('div');
+          commandLine.className = 'terminal-output';
+          commandLine.innerHTML = `<span class="prompt">root@justalicht:~$</span> ${command}`;
+          commandOutput.appendChild(commandLine);
           
           const output = document.createElement('div');
           output.className = 'terminal-output';
@@ -158,7 +168,6 @@ Available commands:
           commandOutput.appendChild(output);
           
           e.target.value = '';
-          
           terminal.scrollTop = terminal.scrollHeight;
         }
       }
@@ -169,6 +178,31 @@ Available commands:
     });
 
     commandInput.addEventListener('keypress', handleCommand);
+
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = window.innerWidth < 768 ? 100 : 200;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.animationDuration = `${5 + Math.random() * 15}s`;
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+        const size = 1 + Math.random() * 3;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.opacity = Math.random() * 0.5 + 0.1;
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    window.addEventListener('load', createParticles);
+    window.addEventListener('resize', () => {
+      document.getElementById('particles').innerHTML = '';
+      createParticles();
+    });
   </script>
 </body>
 </html>
