@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Intrusion Detected</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="matrix-bg"></div>
+  <div class="particles" id="particles"></div>
+  
+  <div class="container">
+    <div class="terminal-window" style="max-width: 800px; margin-top: 100px;">
+      <div class="terminal-header">
+        <div class="terminal-buttons">
+          <span class="terminal-btn red"></span>
+          <span class="terminal-btn yellow"></span>
+          <span class="terminal-btn green"></span>
+        </div>
+        <div class="terminal-title">root@404:~</div>
+      </div>
+      <div class="terminal-body">
+        <h2 class="typewriter">> ERROR 404: PAGE_NOT_FOUND</h2>
+        
+        <div style="margin-top: 30px;">
+          <p>Try one of these instead:</p>
+          <ul class="cmd-list">
+            <li><a href="/">[Home]</a> - Return to safety</li>
+            <li><a href="/tools.html">[Tools]</a> - Find hacking utilities</li>
+            <li><a href="/about.html">[About]</a> - Learn about me</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = window.innerWidth < 768 ? 100 : 200;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.animationDuration = `${5 + Math.random() * 15}s`;
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+        const size = 1 + Math.random() * 3;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.opacity = Math.random() * 0.5 + 0.1;
+        particlesContainer.appendChild(particle);
+      }
+    }
+    window.addEventListener('load', createParticles);
+  </script>
+</body>
+</html>
