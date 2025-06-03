@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JustALicht</title>
+  <title>About JustALicht - Cybersecurity Professional</title>
+  <meta name="description" content="Learn about JustALicht's cybersecurity certifications, skills and experience in network security and ethical hacking.">
+  <meta name="keywords" content="cybersecurity certifications, network security, ethical hacking, JustALicht">
+  <meta name="author" content="JustALicht">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <div class="matrix-bg"></div>
@@ -14,10 +18,10 @@
   <header>
     <div class="container header-flex">
       <a href="index.html" class="logo-link">
-        <img src="assets/images/dwc.png" alt="Logo" class="logo">
+        <img src="assets/images/dwc.png" alt="JustALicht Logo" class="logo">
       </a>
       <h1><span class="glitch" data-text="JustALicht">JustALicht</span></h1>
-      <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">☰</button>
       <nav id="main-nav">
         <ul>
           <li><a href="index.html"><span class="nav-link">[Home]</span></a></li>
@@ -206,7 +210,6 @@
           
           <div class="cert-card">
             <div class="cert-header">
-              
               <div>
                 <h4 class="cert-title">Security Cryptography Fundamentals</h4>
                 <div class="cert-issuer">SigmaSoftware</div>
@@ -217,7 +220,6 @@
           
           <div class="cert-card">
             <div class="cert-header">
-              
               <div>
                 <h4 class="cert-title">Network Fundamentals Course. Basic</h4>
                 <div class="cert-issuer">SigmaSoftware</div>
@@ -228,7 +230,6 @@
           
           <div class="cert-card">
             <div class="cert-header">
-              
               <div>
                 <h4 class="cert-title">Recon</h4>
                 <div class="cert-issuer">PentesterLab</div>
@@ -250,7 +251,6 @@
           
           <div class="cert-card">
             <div class="cert-header">
-
               <div>
                 <h4 class="cert-title">Junior OSINT Specialist</h4>
                 <div class="cert-issuer">SyndicateSec</div>
@@ -261,7 +261,6 @@
           
           <div class="cert-card">
             <div class="cert-header">
-              
               <div>
                 <h4 class="cert-title">May 2025 MetaCTF Flash CTF</h4>
                 <div class="cert-issuer">MetaCTF</div>
@@ -270,7 +269,7 @@
             <div class="cert-date">Completed: 2025</div>
           </div>
 
-	<div class="cert-card">
+          <div class="cert-card">
             <div class="cert-header">
               <div>
                 <h4 class="cert-title">Learn Ethical Hacking From Scratch 2024</h4>
@@ -279,7 +278,6 @@
             </div>
             <div class="cert-date">Completed: 2025</div>
           </div>
-
         </div>
       </div>
     </div>
@@ -299,31 +297,51 @@
         <div class="footer-social">
           <h3>Connect</h3>
           <ul>
-            <li><a href="https://www.youtube.com/@JustALicht" target="_blank">YouTube</a></li>
-            <li>Discord: justalicht</li>
-            <li>Email: justalicht@gmail.com</li>
+            <li><a href="https://www.youtube.com/@JustALicht" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> YouTube</a></li>
+            <li><i class="fab fa-discord"></i> justalicht</li>
+            <li><a href="mailto:justalicht@gmail.com"><i class="fas fa-envelope"></i> justalicht@gmail.com</a></li>
           </ul>
         </div>
         <div class="footer-design">
           <h3>thanks for design Mond</h3>
           <ul>
-            <li><a href="https://www.instagram.com/1firstdesign/" target="_blank">Instagram</a></li>
+            <li><a href="https://www.instagram.com/1firstdesign" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-copyright">
-        <p>&copy; 2025 JustALicht. All systems operational.</p>
+        <p>&copy; <span id="year"></span> JustALicht. All systems operational.</p>
       </div>
     </div>
   </footer>
 
+  <button class="theme-toggle" aria-label="Toggle theme" id="themeToggle">
+    <i class="fas fa-moon"></i>
+  </button>
+
   <script>
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mainNav = document.getElementById('main-nav');
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
     
     mobileMenuBtn.addEventListener('click', () => {
       mainNav.classList.toggle('show');
     });
+
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+    });
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', savedTheme);
+    themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+
+    document.getElementById('year').textContent = new Date().getFullYear();
 
     function createParticles() {
       const particlesContainer = document.getElementById('particles');
