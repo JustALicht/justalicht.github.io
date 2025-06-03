@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 :root {
@@ -12,10 +13,27 @@
   --bg-dark: #121212;
   --bg-darker: #0a0a0a;
   --terminal-bg: rgba(30, 30, 30, 0.9);
+  --card-bg: rgba(40, 40, 40, 0.8);
+  --header-footer-bg: rgba(30, 30, 30, 0.9);
   --success: #4CAF50;
   --warning: #FFC107;
   --error: #F44336;
   --glow: 0 0 10px rgba(192, 192, 192, 0.5);
+  --link-hover: white;
+}
+
+[data-theme="light"] {
+  --primary: #333333;
+  --secondary: #555555;
+  --accent: #222222;
+  --text: #333333;
+  --bg-dark: #f0f0f0;
+  --bg-darker: #e0e0e0;
+  --terminal-bg: rgba(240, 240, 240, 0.9);
+  --card-bg: rgba(250, 250, 250, 0.9);
+  --header-footer-bg: rgba(240, 240, 240, 0.9);
+  --glow: 0 0 10px rgba(0, 0, 0, 0.1);
+  --link-hover: #000000;
 }
 
 body {
@@ -26,6 +44,25 @@ body {
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
+}
+
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--primary);
+  color: var(--bg-darker);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
 }
 
 .matrix-bg {
@@ -49,7 +86,7 @@ body {
 }
 
 header, footer {
-  background-color: rgba(30, 30, 30, 0.9);
+  background-color: var(--header-footer-bg);
   padding: 15px 0;
   border-bottom: 1px solid var(--primary);
   backdrop-filter: blur(5px);
@@ -124,7 +161,7 @@ nav a {
 
 nav a:hover,
 nav a.active {
-  color: white;
+  color: var(--link-hover);
   background: rgba(192, 192, 192, 0.3);
   box-shadow: var(--glow);
 }
@@ -146,15 +183,9 @@ nav a.active::after {
   width: 80%;
 }
 
-.hero {
-  text-align: center;
-  padding: 80px 0;
-}
-
-h1, h2, h3 {
-  color: white;
+h1, h2, h3, h4 {
+  color: var(--accent);
   margin-bottom: 20px;
-  text-shadow: var(--glow);
   font-weight: 700;
 }
 
@@ -194,7 +225,7 @@ h3 {
   background: var(--terminal-bg);
   border: 1px solid var(--primary);
   border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), var(--glow);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), var(--glow);
   margin: 30px auto;
   overflow: hidden;
   transform: translateY(20px);
@@ -249,6 +280,8 @@ h3 {
 .terminal-body {
   padding: 25px;
   min-height: 200px;
+  color: var(--text);
+  line-height: 1.7;
 }
 
 .typewriter {
@@ -289,6 +322,7 @@ h3 {
   padding-left: 30px;
   margin-bottom: 12px;
   line-height: 1.7;
+  color: var(--text);
 }
 
 .cmd-list li::before {
@@ -308,7 +342,7 @@ h3 {
 }
 
 .ctf-list a:hover {
-  color: white;
+  color: var(--link-hover);
   background: rgba(224, 224, 224, 0.2);
   text-decoration: none;
   box-shadow: 0 0 10px rgba(224, 224, 224, 0.5);
@@ -370,7 +404,7 @@ h3 {
 .footer-social h3,
 .footer-design h3 {
   margin-bottom: 20px;
-  color: white;
+  color: var(--accent);
   position: relative;
   display: inline-block;
 }
@@ -473,7 +507,6 @@ h3 {
   }
 }
 
-/* Certification Cards */
 .certifications-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -482,7 +515,7 @@ h3 {
 }
 
 .cert-card {
-  background: rgba(40, 40, 40, 0.8);
+  background: var(--card-bg);
   border: 1px solid var(--primary);
   border-radius: 8px;
   padding: 20px;
@@ -667,4 +700,20 @@ h3 {
     margin-right: 0;
     margin-bottom: 10px;
   }
+}
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
 }
