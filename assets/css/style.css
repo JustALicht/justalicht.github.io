@@ -717,3 +717,19 @@ main {
 footer {
   flex-shrink: 0;
 }
+.error {
+  color: var(--error);
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from, to { opacity: 1 }
+  50% { opacity: 0 }
+}
+
+.accent {
+  color: var(--accent);
+}
