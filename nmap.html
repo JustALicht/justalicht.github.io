@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nmap Manual - Comprehensive Guide | JustALicht</title>
+  <meta name="description" content="Complete Nmap manual with examples, commands, and techniques for network scanning and security auditing.">
+  <meta name="keywords" content="nmap, nmap tutorial, nmap commands, network scanning, security auditing, port scanning, JustALicht">
+  <meta name="author" content="JustALicht">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4M7MVGK19P');
+  </script>
+</head>
+<body>
+  <div class="matrix-bg"></div>
+  <div class="particles" id="particles"></div>
+
+  <div class="manual-container">
+    <a href="tools.html" class="back-button">
+      <i class="fas fa-arrow-left"></i> Back to Tools
+    </a>
+
+    <div class="terminal-window manual-window">
+      <div class="terminal-header">
+        <div class="terminal-buttons">
+          <span class="terminal-btn red"></span>
+          <span class="terminal-btn yellow"></span>
+          <span class="terminal-btn green"></span>
+        </div>
+        <div class="terminal-title">user@nmap-manual:~</div>
+      </div>
+      <div class="terminal-body">
+        <h2 class="typewriter">> nmap_manual/</h2>
+        
+        <div class="manual-content">
+          <div class="manual-intro">
+            <img src="https://nmap.org/images/sitelogo.png" alt="Nmap Logo" class="manual-logo">
+            <p>Nmap ("Network Mapper") is a free and open-source utility for network discovery and security auditing. It was designed to rapidly scan large networks, although it works fine against single hosts.</p>
+          </div>
+
+          <div class="manual-section">
+            <h3><i class="fas fa-terminal accent"></i> Basic Commands</h3>
+            <div class="command-box">
+              <div class="command-line">
+                <span class="prompt">$</span>
+                <span class="command">nmap -sP 192.168.1.0/24</span>
+              </div>
+              <p class="command-desc">Ping scan - lists hosts that respond to ping</p>
+            </div>
+
+            <div class="command-box">
+              <div class="command-line">
+                <span class="prompt">$</span>
+                <span class="command">nmap -sS 192.168.1.1</span>
+              </div>
+              <p class="command-desc">Stealth SYN scan (default scan type)</p>
+            </div>
+
+            <div class="command-box">
+              <div class="command-line">
+                <span class="prompt">$</span>
+                <span class="command">nmap -sV 192.168.1.1</span>
+              </div>
+              <p class="command-desc">Version detection scan</p>
+            </div>
+          </div>
+
+          <div class="manual-section">
+            <h3><i class="fas fa-network-wired accent"></i> Advanced Scanning</h3>
+            <div class="command-box">
+              <div class="command-line">
+                <span class="prompt">$</span>
+                <span class="command">nmap -A -T4 192.168.1.1</span>
+              </div>
+              <p class="command-desc">Aggressive scan with OS detection, version detection, script scanning, and traceroute</p>
+            </div>
+
+            <div class="command-box">
+              <div class="command-line">
+                <span class="prompt">$</span>
+                <span class="command">nmap -p 1-65535 -sV -sS -T4 192.168.1.1</span>
+              </div>
+              <p class="command-desc">Full port scan with service detection</p>
+            </div>
+
+            <div class="command-box">
+              <div class="command-line">
+                <span class="prompt">$</span>
+                <span class="command">nmap --script vuln 192.168.1.1</span>
+              </div>
+              <p class="command-desc">Vulnerability scan using NSE scripts</p>
+            </div>
+          </div>
+
+          <div class="manual-section">
+            <h3><i class="fas fa-shield-alt accent"></i> Firewall Evasion</h3>
+            <div class="command-box">
+              <div class="command-line">
+                <span class="prompt">$</span>
+                <span class="command">nmap -f 192.168.1.1</span>
+              </div>
+              <p class="command-desc">Fragment packets (evades some packet filters)</p>
+            </div>
+
+            <div class="command-box">
+              <div class="command-line">
+                <span class="prompt">$</span>
+                <span class="command">nmap --mtu 24 192.168.1.1</span>
+              </div>
+              <p class="command-desc">Set custom MTU size</p>
+            </div>
+
+            <div class="command-box">
+              <div class="command-line">
+                <span class="prompt">$</span>
+                <span class="command">nmap -D RND:10 192.168.1.1</span>
+              </div>
+              <p class="command-desc">Use decoy IP addresses</p>
+            </div>
+          </div>
+
+          <div class="manual-section">
+            <h3><i class="fas fa-code accent"></i> NSE Scripting</h3>
+            <div class="command-box">
+              <div class="command-line">
+                <span class="prompt">$</span>
+                <span class="command">nmap --script=http-title 192.168.1.1</span>
+              </div>
+              <p class="command-desc">Get webpage titles from web servers</p>
+            </div>
+
+            <div class="command-box">
+              <div class="command-line">
+                <span class="prompt">$</span>
+                <span class="command">nmap --script=ssl-enum-ciphers 192.168.1.1 -p 443</span>
+              </div>
+              <p class="command-desc">Enumerate SSL/TLS ciphers</p>
+            </div>
+
+            <div class="command-box">
+              <div class="command-line">
+                <span class="prompt">$</span>
+                <span class="command">nmap --script=smb-os-discovery 192.168.1.1</span>
+              </div>
+              <p class="command-desc">SMB OS discovery</p>
+            </div>
+          </div>
+
+          <div class="manual-section">
+            <h3><i class="fas fa-book accent"></i> Resources</h3>
+            <ul class="resource-list">
+              <li><i class="fas fa-link accent"></i> <a href="https://nmap.org/book/man.html" target="_blank">Official Nmap Documentation</a></li>
+              <li><i class="fas fa-book accent"></i> <a href="https://nmap.org/book/" target="_blank">Nmap Network Scanning Book</a></li>
+              <li><i class="fas fa-github accent"></i> <a href="https://github.com/nmap/nmap" target="_blank">Nmap GitHub Repository</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="theme-toggle" aria-label="Toggle theme" id="themeToggle">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+    });
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', savedTheme);
+    themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = window.innerWidth < 768 ? 100 : 200;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.animationDuration = `${5 + Math.random() * 15}s`;
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+        const size = 1 + Math.random() * 3;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.opacity = Math.random() * 0.5 + 0.1;
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    window.addEventListener('load', createParticles);
+    window.addEventListener('resize', () => {
+      document.getElementById('particles').innerHTML = '';
+      createParticles();
+    });
+  </script>
+</body>
+</html>
