@@ -733,3 +733,146 @@ footer {
 .accent {
   color: var(--accent);
 }
+.manual-container {
+  padding: 40px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 1.1em;
+  transition: all 0.3s ease;
+  padding: 8px 15px;
+  border-radius: 5px;
+  background: rgba(192, 192, 192, 0.1);
+  border: 1px solid var(--primary);
+}
+
+.back-button:hover {
+  background: rgba(192, 192, 192, 0.3);
+  box-shadow: var(--glow);
+  color: var(--link-hover);
+}
+
+.manual-window {
+  margin-top: 20px;
+}
+
+.manual-content {
+  padding: 15px;
+}
+
+.manual-intro {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.manual-logo {
+  height: 80px;
+  width: auto;
+  filter: brightness(1.2);
+}
+
+.manual-section {
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed rgba(192, 192, 192, 0.3);
+}
+
+.command-box {
+  background: rgba(30, 30, 30, 0.5);
+  border-left: 3px solid var(--accent);
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 0 5px 5px 0;
+  transition: all 0.3s ease;
+}
+
+.command-box:hover {
+  background: rgba(40, 40, 40, 0.7);
+  box-shadow: var(--glow);
+}
+
+.command-line {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.command {
+  color: var(--accent);
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.command-desc {
+  color: var(--text);
+  padding-left: 25px;
+}
+
+.resource-list {
+  list-style: none;
+}
+
+.resource-list li {
+  margin-bottom: 12px;
+  padding-left: 5px;
+  border-left: 2px solid var(--accent);
+}
+
+.resource-list a {
+  color: var(--text);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+  padding: 3px 0;
+  margin-left: 10px;
+}
+
+.resource-list a:hover {
+  color: var(--accent);
+  text-shadow: 0 0 5px var(--accent);
+}
+
+.manual-link {
+  color: var(--warning) !important;
+  margin-left: 10px;
+}
+
+.manual-link:hover {
+  color: var(--error) !important;
+}
+
+@media (max-width: 768px) {
+  .manual-intro {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .manual-logo {
+    margin: 0 auto;
+  }
+  
+  .command-line {
+    flex-wrap: wrap;
+  }
+  
+  .command {
+    margin-left: 0;
+    margin-top: 5px;
+    width: 100%;
+  }
+  
+  .command-desc {
+    padding-left: 0;
+  }
+}
